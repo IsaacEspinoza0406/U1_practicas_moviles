@@ -72,12 +72,12 @@ fun DashboardView(navController: NavController) {
                     ) {
                         Column(Modifier.padding(16.dp)) {
                             Text(
-                                "👤 ${user.name}",
+                                " ${user.name}",
                                 style = MaterialTheme.typography.bodyLarge
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                "✉️ ${user.email}",
+                                "${user.email}",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
