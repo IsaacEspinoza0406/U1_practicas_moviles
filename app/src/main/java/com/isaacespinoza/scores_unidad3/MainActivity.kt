@@ -50,12 +50,12 @@ class MainActivity : ComponentActivity() {
                             Tab(
                                 selected = tabSeleccionado == 0,
                                 onClick = { tabSeleccionado = 0 },
-                                text = { Text("Add") }
+                                text = { Text("Dashboard") }
                             )
                             Tab(
                                 selected = tabSeleccionado == 1,
                                 onClick = { tabSeleccionado = 1 },
-                                text = { Text("Edit") }
+                                text = { Text("Scores") }
                             )
                         }
                     }

@@ -14,8 +14,14 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -61,5 +67,30 @@ fun Dashboard(students: MutableList<Student>) {
                 }
             }
         }
+    }
+}
+@Composable
+fun views(students: MutableList<Student>) {
+    var vistaSeleccionada by remember { mutableIntStateOf(0) }
+
+    Column {
+        TabRow(selectedTabIndex = vistaSeleccionada) {
+            Tab(
+                selected = vistaSeleccionada == 0,
+                onClick = { vistaSeleccionada = 0 },
+                text = { Text("Dashboard") }
+            )
+            Tab(
+                selected = vistaSeleccionada == 1,
+                onClick = { vistaSeleccionada = 1 },
+                text = { Text("Edit") }
+            )
+            Tab(
+                selected = vistaSeleccionada == 2,
+                onClick = { vistaSeleccionada = 2 },
+                text = { Text("Add") }
+            )
+        }
+
     }
 }
