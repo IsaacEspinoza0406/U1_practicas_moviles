@@ -39,7 +39,7 @@ fun CameraScreen(viewModel: CameraViewModel = viewModel()) {
         if (viewModel.imageBitmap != null) {
             Image(
                 bitmap = viewModel.imageBitmap!!.asImageBitmap(),
-                contentDescription = "Foto tomada.",
+                contentDescription = "Se tomó la foto.",
                 modifier = Modifier
                     .size(300.dp)
                     .padding(bottom = 16.dp)
