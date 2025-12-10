@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.isaacespinoza.u4_examen_practico"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.isaacespinoza.u4_examen_practico"
         minSdk = 29
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }

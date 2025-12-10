@@ -27,7 +27,18 @@ fun SearchScreen(
     onOpenFavorites: () -> Unit
 ) {
     val state by itemsViewModel.uiState.collectAsState()
-    val filtered = itemsViewModel.filteredItems()
+    
+    val filtered = remember(state) {
+        val q = state.query.trim().lowercase()
+        if (q.isEmpty()) {
+            state.items
+        } else {
+            state.items.filter {
+                (it.character ?: "").lowercase().contains(q) ||
+                (it.quote ?: "").lowercase().contains(q)
+            }
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -95,9 +106,14 @@ private fun SearchItemRow(
     ) {
         Row(modifier = Modifier.padding(12.dp)) {
             AsyncImage(
-                model = item.image,
+                model = coil.request.ImageRequest.Builder(androidx.compose.ui.platform.LocalContext.current)
+                    .data(item.image)
+                    .crossfade(true)
+                    .setHeader("User-Agent", "Mozilla/5.0")
+                    .build(),
                 contentDescription = item.character,
-                modifier = Modifier.size(64.dp)
+                modifier = Modifier.size(64.dp),
+                contentScale = androidx.compose.ui.layout.ContentScale.Crop
             )
             Spacer(modifier = Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {

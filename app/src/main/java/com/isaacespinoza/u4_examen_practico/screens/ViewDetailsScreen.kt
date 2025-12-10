@@ -49,7 +49,16 @@ fun ViewDetailsScreen(
         )
     }) { padding ->
         Column(modifier = Modifier.padding(padding).padding(16.dp).fillMaxSize()) {
-            AsyncImage(model = item.image, contentDescription = item.character, modifier = Modifier.fillMaxWidth().height(250.dp))
+            AsyncImage(
+                model = coil.request.ImageRequest.Builder(androidx.compose.ui.platform.LocalContext.current)
+                    .data(item.image)
+                    .crossfade(true)
+                    .setHeader("User-Agent", "Mozilla/5.0")
+                    .build(),
+                contentDescription = item.character,
+                modifier = Modifier.fillMaxWidth().height(250.dp),
+                contentScale = androidx.compose.ui.layout.ContentScale.Fit // Fit for details to see whole character
+            )
             Spacer(modifier = Modifier.height(12.dp))
             Text(text = item.character ?: "", style = MaterialTheme.typography.titleLarge)
             Spacer(modifier = Modifier.height(8.dp))
@@ -68,11 +77,7 @@ fun ViewDetailsScreen(
 
                 Spacer(modifier = Modifier.width(12.dp))
 
-                Button(onClick = { /* no-op: removal from details optional */ }) {
-                    Icon(Icons.Filled.Share, contentDescription = "compartir")
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Compartir")
-                }
+                // Shared button removed as requested
             }
         }
     }
